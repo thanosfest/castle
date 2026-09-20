@@ -1,0 +1,13 @@
+{
+  "commands": [
+    { "name": "go",        "aliases": ["walk", "move", "head"] },
+    { "name": "look",      "aliases": ["l"] },
+    { "name": "get",       "aliases": ["pick", "grab", "take"] },
+    { "name": "use",       "aliases": [] },
+    { "name": "inventory", "aliases": ["inv","items"] },
+    { "name": "save",      "aliases": [] },
+    { "name": "load",      "aliases": [] },
+    { "name": "quit",      "aliases": ["exit", "q"] },
+    { "name": "speak", "aliases": ["talk"] }
+  ]
+}

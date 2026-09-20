@@ -1,0 +1,93 @@
+{
+  "rooms": [
+    {
+      "id": "starting_room",
+      "name": "Dark Cell",
+      "description": "Big bars block your way, weirdly there is no lock. You hear an old man humming a melody.",
+      "items": [
+        { "name": "Nail", "description": "An old rusty nail", "effect": "unlock:north:starting_room:bars", "message": "You tap the bars mimicking the old man's melody. The cell door swings open." }
+      ],
+      "npcs": [
+        {
+          "name": "Old Man",
+          "dialogue": [
+            "... *hums a melody* ... la la la la laaaa...\nHmm? Hello!\n*hums again* la la la la laaaa... The bars... the bars don't like music you know... *taps the wall rhythmically*\nThe lord of this castle locked me here years ago... he fears the sword in the treasury...\nThe treasury is beyond the great hall... *hums louder* ...la la la la laaaa..."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "corridor",
+      "name": "Prison Corridor",
+      "description": "A long hallway lined with empty cells. Torches flicker on the walls. At the far end, a guard dozes in his chair beside a heavy door. A key hangs loosely from his belt.",
+      "items": [
+        { "name": "Key", "description": "A heavy iron key from the sleeping guard's belt", "effect": "unlock:north:corridor:door", "message": "You quietly slip the key into the lock. The door clicks open without a sound." }
+      ],
+      "npcs": []
+    },
+    {
+      "id": "courtyard",
+      "name": "Castle Courtyard",
+      "description": "Fresh air at last. The castle courtyard is cold and grey. A well sits in the center. The great hall is to the north. Mud and old blood stain the cobblestones.",
+      "items": [],
+      "npcs": [
+        {
+          "name": "Slave",
+          "dialogue": [
+            "Psst! You there! How did you get out?\nThere is a sword in the treasury beneath the great hall. They say it was forged to slay the lord himself. That is why he hid it.\nGo. Before someone sees us talking."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "great_hall",
+      "name": "Great Hall",
+      "description": "A vast hall with a long feasting table covered in food. Banners bearing the lord's crest hang from the ceiling. A staircase leads up to the lord's chambers to the north. A passage to the east leads to the treasury.",
+      "items": [
+        { "name": "Torch", "description": "A lit torch from the wall bracket, useful in dark places", "effect": "light:treasury", "message": "You illuminate the room" }
+      ],
+      "npcs": []
+    },
+    {
+      "id": "treasury",
+      "name": "Treasury",
+      "description": "A dark stone room. Dusty chests line the walls, most empty. In the center, mounted on a stone pedestal, is a sword radiating a faint glow.",
+      "condition": { "type": "requires_item", "item": "Torch", "darkDescription": "It is pitch black. You can't see anything. You need a light source." },
+      "items": [
+        { "name": "Sword", "description": "A magnificent blade etched with ancient runes. It feels alive.", "effect": "win:lord", "message": "You raise the ancient sword. The runes glow bright.\nThe Lord stumbles back... and falls.\n\nThe castle falls silent.\nYou have slain the lord. The prisoners are free.\n\nYOU WIN" }
+      ],
+      "npcs": []
+    },
+    {
+      "id": "lords_chambers",
+      "name": "Lord's Chambers",
+      "description": "A lavish room reeking of wine and arrogance. The lord sits by the fire, his back to you. He turns slowly and rises, drawing his blade.",
+      "condition": { "type": "requires_item", "item": "Sword", "failMessage": "You burst into the lord's chambers empty handed. He takes one look at you and laughs.\nHe draws his blade and cuts you down before you can blink.\n\nYou are dead.\n\nGAME OVER" },
+      "items": [],
+      "npcs": [
+        {
+          "name": "Lord",
+          "dialogue": [
+            "Who dares enter my chambers? A prisoner? *laughs coldly* You should have stayed in your cell.\nThat sword... where did you find that sword... *steps back* It cannot be...\nGUARDS! GUARDS! *draws his blade* I will deal with you myself, wretch."
+          ]
+        }
+      ]
+    }
+  ],
+  "connections": [
+    { "from": "starting_room",  "direction": "north", "to": "corridor",       "locked": true  },
+    { "from": "corridor",       "direction": "south", "to": "starting_room",  "locked": false },
+    { "from": "corridor",       "direction": "north", "to": "courtyard",      "locked": true  },
+    { "from": "courtyard",      "direction": "south", "to": "corridor",       "locked": false },
+    { "from": "courtyard",      "direction": "north", "to": "great_hall",     "locked": false },
+    { "from": "great_hall",     "direction": "south", "to": "courtyard",      "locked": false },
+    { "from": "great_hall",     "direction": "east",  "to": "treasury",       "locked": false  },
+    { "from": "treasury",       "direction": "west",  "to": "great_hall",     "locked": false },
+    { "from": "great_hall",     "direction": "north", "to": "lords_chambers", "locked": false },
+    { "from": "lords_chambers", "direction": "south", "to": "great_hall",     "locked": false }
+  ],
+  "player": {
+    "name": "player",
+    "startingRoom": "starting_room"
+  }
+}

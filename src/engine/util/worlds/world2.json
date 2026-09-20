@@ -1,0 +1,40 @@
+{
+  "rooms": [
+    {
+      "id": "porch",
+      "name": "Porch",
+      "description": "You stand outside a quiet house. A locked wooden gate leads north into the garden. A small iron key lies on the doormat.",
+      "items": [
+        {
+          "name": "Garden Key",
+          "description": "A small iron key",
+          "effect": "unlock:north:porch:gate",
+          "message": "The small key turns in the lock. The wooden gate swings open."
+        }
+      ],
+      "npcs": []
+    },
+    {
+      "id": "garden",
+      "name": "Garden",
+      "description": "Tall grass sways around you. An old chest sits beneath a gnarled tree, its lid slightly ajar.",
+      "items": [
+        {
+          "name": "Chest",
+          "description": "An old wooden chest with a loose lid. Inside you find the missing family ring.",
+          "effect": "win",
+          "message": "You lift the lid of the chest and find the missing family ring nestled inside.\n\nYOU WIN"
+        }
+      ],
+      "npcs": []
+    }
+  ],
+  "connections": [
+    { "from": "porch",  "direction": "north", "to": "garden", "locked": true  },
+    { "from": "garden", "direction": "south", "to": "porch",  "locked": false }
+  ],
+  "player": {
+    "name": "player",
+    "startingRoom": "porch"
+  }
+}
